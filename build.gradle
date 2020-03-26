@@ -1,0 +1,47 @@
+plugins {
+    id ('net.ltgt.apt') version ('0.10')
+}
+apply plugin: 'idea'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://projectlombok.org/edge-releases' }
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:edge-SNAPSHOT'
+    apt 'org.projectlombok:lombok:edge-SNAPSHOT'
+    annotationProcessor("org.projectlombok:lombok:edge-SNAPSHOT")
+    testCompile("io.cucumber:cucumber-java:${libs_version_cucumber}")
+    testCompile("io.cucumber:cucumber-junit:${libs_version_cucumber}")
+    testCompile("io.cucumber:cucumber-core:${libs_version_cucumber}")
+    testCompile("com.sun.jersey:jersey-client:${libs_version_jersey_client}")
+    testCompile("org.json:json:${libs_version_json}")
+    testCompile("junit:junit:${libs_version_junit}")
+    testCompile("org.projectlombok:lombok:edge-SNAPSHOT")
+    testCompile("io.rest-assured:rest-assured:${libs_version_rest_assured}")
+    testCompile("org.hamcrest:hamcrest-all:${libs_version_hamcrest}")
+}
+
+test {
+    def env = System.getProperty("env") != null ? System.getProperty('env') : 'si'
+    systemProperties = [
+            'env'             : env,
+            'cucumber.options': System.getProperty('cucumber.options') != null
+                    ? System.getProperty('cucumber.options')
+                    :
+                    ' -g uk/co/news ' +
+                            ' -m ' +
+                            ' -p pretty -p html:target/cucumber -p json:target/cucumber.json ' +
+                            ' -t @regression,@' + env + ' src/test/resources/features/ '
+    ]
+}
+
+tasks.withType(JavaCompile) {
+    options.annotationProcessorPath = configurations.apt
+}
