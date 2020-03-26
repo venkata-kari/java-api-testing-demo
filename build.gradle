@@ -17,9 +17,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:edge-SNAPSHOT'
     apt 'org.projectlombok:lombok:edge-SNAPSHOT'
     annotationProcessor("org.projectlombok:lombok:edge-SNAPSHOT")
-    testCompile("io.cucumber:cucumber-java:${libs_version_cucumber}")
-    testCompile("io.cucumber:cucumber-junit:${libs_version_cucumber}")
-    testCompile("io.cucumber:cucumber-core:${libs_version_cucumber}")
     testCompile("com.sun.jersey:jersey-client:${libs_version_jersey_client}")
     testCompile("org.json:json:${libs_version_json}")
     testCompile("junit:junit:${libs_version_junit}")

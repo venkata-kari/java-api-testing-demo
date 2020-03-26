@@ -3,8 +3,6 @@ package example.service.client;
 import com.sun.jersey.api.client.ClientResponse;
 import example.service.domain.EmployeePostRecord;
 import example.utils.RestAPiClient;
-import gherkin.deps.com.google.gson.JsonObject;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EmployeeClientApi extends RestAPiClient {

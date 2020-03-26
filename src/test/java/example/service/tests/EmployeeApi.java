@@ -29,7 +29,7 @@ public class EmployeeApi {
     }
 
     @Test
-    public void createEmployeeRecord() throws JSONException {
+    public void testCreateEmployeeRecord() throws JSONException {
         ClientResponse employeePostRecordResponse = employeeClientApi.postEmployeeRecord(employeePostRecord);
 
         Assert.assertEquals(200, employeePostRecordResponse.getStatus());
@@ -38,7 +38,7 @@ public class EmployeeApi {
     }
 
     @Test
-    public void getEmployeeDetailsById() throws JSONException {
+    public void testGetEmployeeDetailsById() throws JSONException {
         ClientResponse employeeDetails = employeeClientApi.getEmployeeRecord(employeeId);
         JSONObject responseBody = new JSONObject(employeeDetails.getEntity(String.class));
 
@@ -50,7 +50,7 @@ public class EmployeeApi {
     }
 
     @Test
-    public void deleteEmployeeRecordById() throws JSONException {
+    public void testEmployeeRecordDeleteById() throws JSONException {
         ClientResponse deleteResponse = employeeClientApi.deleteEmployeeRecord(employeeId);
         JSONObject responseBody = new JSONObject(deleteResponse.getEntity(String.class));
 
@@ -59,7 +59,7 @@ public class EmployeeApi {
     }
 
     @Test
-    public void requestToGetUnknownEmployeeRecordFails() throws JSONException {
+    public void testRequestToGetUnknownEmployeeRecordFails() throws JSONException {
         ClientResponse employeeRecordResponse = employeeClientApi.getEmployeeRecord(employeeId);
         JSONObject response = new JSONObject(employeeRecordResponse.getEntity(String.class));
 
