@@ -25,20 +25,6 @@ dependencies {
     testCompile("org.hamcrest:hamcrest-all:${libs_version_hamcrest}")
 }
 
-test {
-    def env = System.getProperty("env") != null ? System.getProperty('env') : 'si'
-    systemProperties = [
-            'env'             : env,
-            'cucumber.options': System.getProperty('cucumber.options') != null
-                    ? System.getProperty('cucumber.options')
-                    :
-                    ' -g uk/co/news ' +
-                            ' -m ' +
-                            ' -p pretty -p html:target/cucumber -p json:target/cucumber.json ' +
-                            ' -t @regression,@' + env + ' src/test/resources/features/ '
-    ]
-}
-
 tasks.withType(JavaCompile) {
     options.annotationProcessorPath = configurations.apt
 }
